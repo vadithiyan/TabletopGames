@@ -146,6 +146,11 @@ public class MCTSParams extends PlayerParameters {
         treePolicy = (MCTSEnums.TreePolicy) getParameterValue("treePolicy");
         selectionPolicy = (MCTSEnums.SelectionPolicy) getParameterValue("selectionPolicy");
         opponentTreePolicy = (MCTSEnums.OpponentTreePolicy) getParameterValue("opponentTreePolicy");
+        if(opponentTreePolicy == MCTSEnums.OpponentTreePolicy.MultiTree && information == MCTSEnums.Information.Perfect_Information)
+        {
+            System.out.println("Setting Opponent Tree Policy to OneTree as Perfect Information does not currently support MultiTree");
+            opponentTreePolicy = MCTSEnums.OpponentTreePolicy.OneTree;
+        }
         exploreEpsilon = (double) getParameterValue("exploreEpsilon");
         MASTBoltzmann = (double) getParameterValue("MASTBoltzmann");
         MAST = (MCTSEnums.MASTType) getParameterValue("MAST");
